@@ -11,6 +11,10 @@ db = Database(Var.DATABASE_URL, Var.SESSION_NAME)
 
 
 @StreamBot.on_message(filters.command('start') & filters.private & ~filters.edited)
+async def hell_start(c, m):
+    await m.reply_text("⌨️", quote=True)
+        
+
 async def start(b, m):
     if not await db.is_user_exist(m.from_user.id):
         await db.add_user(m.from_user.id)
@@ -131,7 +135,7 @@ async def start(b, m):
         )
 
 
-@StreamBot.on_message(filters.command('help') & filters.private & ~filters.edited)
+#@StreamBot.on_message(filters.command('help') & filters.private & ~filters.edited)
 async def help_handler(bot, message):
     if not await db.is_user_exist(message.from_user.id):
         await db.add_user(message.from_user.id)
